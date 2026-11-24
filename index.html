@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nanna Bengaluru — Bengaluru Cafe Finder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <div class="brand">
+          <span class="brand-icon">☕</span>
+          <div>
+            <h1>Nanna Bengaluru</h1>
+            <p class="subtitle">Curated Coffee &amp; Workspaces across Bengaluru</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button id="savedToggleBtn" class="btn-outline" type="button">
+            Saved (<span id="savedCount">0</span>)
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Search & Controls -->
+      <section class="controls-panel">
+        <div class="search-row">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by cafe name, area (Indiranagar, HSR...), or drink..."
+          />
+          <label class="toggle-chip">
+            <input type="checkbox" id="openNowCheckbox" />
+            <span>Open Now (IST)</span>
+          </label>
+          <select id="sortSelect" aria-label="Sort cafes">
+            <option value="rating">Sort: Highest Rated</option>
+            <option value="priceAsc">Price: Low to High</option>
+            <option value="priceDesc">Price: High to Low</option>
+          </select>
+        </div>
+
+        <!-- Neighborhood Pills -->
+        <div id="neighborhoodPills" class="pill-row"></div>
+
+        <!-- Vibe / Feature Tags -->
+        <div id="tagPills" class="pill-row secondary-pills"></div>
+      </section>
+
+      <!-- Main Split Layout: Cafe Cards + Interactive Bengaluru Map -->
+      <section class="workspace-grid">
+        <div>
+          <div class="results-header">
+            <h2 id="resultsCount">Showing 11 cafes</h2>
+            <button id="resetFiltersBtn" class="link-btn hidden" type="button">
+              Reset filters
+            </button>
+          </div>
+          <div id="cafeGrid" class="cafe-grid"></div>
+        </div>
+
+        <aside class="map-sidebar">
+          <div class="map-card">
+            <div class="map-header">
+              <h3>Bengaluru Brew Map</h3>
+              <span>Click a pin to inspect</span>
+            </div>
+            <div id="map"></div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <!-- Cafe Detail Modal -->
+    <div id="cafeModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+      <div class="modal-card">
+        <button id="closeModalBtn" class="close-btn" aria-label="Close modal">&times;</button>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
